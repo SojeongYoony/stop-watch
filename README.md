@@ -7,10 +7,9 @@
 
 ###### 1차 점검일 : 22-04-08
 
-<br><br><br>
+<br>
 
 #### 개발일지
-
 <details>
 <summary> 2022-04-01 </summary>
 <ul>
