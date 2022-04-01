@@ -18,3 +18,7 @@
     <li>인라인 click event 분리</li>
 </ul>
 </details>
+
+**목표**
+[]timer객체화
+[]입력 시간마다 시간 찍기
