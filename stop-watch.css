@@ -1,0 +1,21 @@
+
+#time_box {
+    width : 450px;
+    height: 140px;
+    background-color: orange;
+    display: flex;
+}
+.time {
+    margin: 0 auto;
+    display: inline;
+    width: 30%;
+    font-weight: 900;
+    font-size: 100px;
+    text-align: center;
+}
+.btns {
+    width : 150px;
+    height : 24px;
+    cursor: pointer;
+}
+
