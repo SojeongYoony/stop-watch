@@ -2,7 +2,7 @@
 var second = 0;
 var minute = 0;
 var hour = 0;
-var interval;
+var interval = null;
 
 
 function startTimer(){
@@ -55,7 +55,7 @@ function reset(){
 /* ------------------------- btns event ---------------------------- */
 	
 $('#start_btn').on('click', function(){
-	
+	console.log('start_btn');
 	if (interval == null) {
 		startTimer();
 		interval = setInterval(startTimer, 1000);
@@ -65,12 +65,14 @@ $('#start_btn').on('click', function(){
 
 
 $('#pause_btn').on('click', function(){
+	console.log('pause_btn');
 	clearInterval(interval);
 	interval = null;
 })
 
 
 $('#stop_btn').on('click', function(){
+	console.log('stop_btn');
 	clearInterval(interval); // button을 종료시키는거고 interval은 별개이기때문에 종료되지 않음 clearInterval이라는게 있음.
 	reset();
 	interval = null;
