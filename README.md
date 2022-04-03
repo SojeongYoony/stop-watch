@@ -21,7 +21,12 @@
 <details>
 <summary> 2022-04-02 </summary>
 <ul>
-    <li>Timer 객체화 시키기(class이용)</li>
+  <li>Timer 객체화 시키기(class이용)</li>
+</ul>
+</details>
+<summary> 2022-04-03 </summary>
+<ul>
+  <li>오류수정....=>reset/displaytime함수 수정</li>
 </ul>
 </details>
 
