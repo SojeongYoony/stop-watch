@@ -1,10 +1,11 @@
-var second = 0;
-var minute = 0;
-var hour = 0;
-var interval = null;
 var _setTime = 5000;
 
 function Timer(){
+    var second = 0;
+    var minute = 0;
+    var hour = 0;
+    var interval = null;
+    
     Timer.prototype.startTimer = function(){
         second ++;
         
@@ -29,7 +30,7 @@ function Timer(){
     }
 
     Timer.prototype.format = function(num) {
-        return (num < 10 ? '0' : '') + num
+        return (num < 10 ? '0' : '') + num;
     }
 
     Timer.prototype.reset = function(){
@@ -38,4 +39,7 @@ function Timer(){
         hour = 0;
     }
 
+    Timer.prototype.displayTime = function() {
+        
+    }
 }
