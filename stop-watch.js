@@ -73,7 +73,7 @@ $('#pause_btn').on('click', function(){
 
 
 $('#stop_btn').on('click', function(){
-	clearInterval(timer.interval); // button을 종료시키는거고 interval은 별개이기때문에 종료되지 않음 clearInterval이라는게 있음.
+	clearInterval(timer.interval); // .off는 button을 종료시키는거고 interval은 별개이기때문에 종료되지 않음 clearInterval이라는게 있음.
 	timer.reset();
 	displayTime(timer.second, timer.minute, timer.hour);
 	timer.interval = null;
