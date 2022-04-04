@@ -30,6 +30,12 @@
   <li>오류수정....=>reset/displaytime함수 수정</li>
 </ul>
 </details>
+<details>
+<summary> 2022-04-04 </summary>
+<ul>
+  <li>오류수정....Uncaught TypeError : Cannot read properties of undefined (reading 'tick')</li>
+</ul>
+</details>
 
 
 

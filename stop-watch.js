@@ -81,9 +81,9 @@ timer.on("tick", displayTime);
 
 /* ------------------------- btns event ---------------------------- */
 
-$('#start_btn').on('click', timer.start);
-$('#pause_btn').on('click', timer.pause);
-$('#stop_btn').on('click', timer.stop);
+$('#start_btn').on('click', timer.start.bind(timer));
+$('#pause_btn').on('click', timer.pause.bind(timer));
+$('#stop_btn').on('click', timer.stop.bind(timer));
 
 //clearInterval(timer.interval); // .off는 button을 종료시키는거고 interval은 별개이기때문에 종료되지 않음 clearInterval이라는게 있음.
 
