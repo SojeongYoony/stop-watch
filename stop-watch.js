@@ -18,7 +18,6 @@ class Timer {
 	}
 
 	start(){
-
 		if(this.interval != null) return;
 
 		this.interval = setInterval(() => {
@@ -60,23 +59,20 @@ var timer = new Timer();
 /* ------------------------- btns event ---------------------------- */
 	
 $('#start_btn').on('click', function(){
-	if (timer.interval == null) {
-		timer.interval = setInterval(timer.startTimer, 1000);
-	}
+	timer.start();
 })
 
 
 $('#pause_btn').on('click', function(){
-	clearInterval(timer.interval);
-	timer.interval = null;
+	timer.pause();
 })
 
 
 $('#stop_btn').on('click', function(){
-	clearInterval(timer.interval); // .off는 button을 종료시키는거고 interval은 별개이기때문에 종료되지 않음 clearInterval이라는게 있음.
+	//clearInterval(timer.interval); // .off는 button을 종료시키는거고 interval은 별개이기때문에 종료되지 않음 clearInterval이라는게 있음.
+	timer.pause();
 	timer.reset();
 	displayTime(timer.second, timer.minute, timer.hour);
-	timer.interval = null;
 })
 
 
