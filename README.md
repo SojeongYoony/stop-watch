@@ -34,7 +34,17 @@
 
 
 
-
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
 
 #### JS Class
 
@@ -51,3 +61,7 @@ class MyClass {
 
 * 이렇게 클래스를 만들고 new MyClass()를 호출하면 내부에서 정의한 메서드가 들어 있는 객체 생성
 * 객체의 기본 상태를 설정해주는 생성자 메서드 constructor()는 new에 의해 자동 호출 되므로, 특별한 절차 없이 객체를 초기화 할 수 있다.
+
+
+###### 지금은 모르지만 언젠간 이해되겠지..
+[바벨](https://velog.io/@ksh4820/%EB%B0%94%EB%B2%A8%EA%B3%BC-%EC%9B%B9%ED%8C%A9)

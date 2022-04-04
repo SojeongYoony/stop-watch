@@ -6,15 +6,14 @@ class Timer {
 		this.minute = 0;
 		this.hour = 0;
 		this.interval = null;
-		this.callback = {
-			tick: null
+		this.callbacks = {
+			tick : null,
 		};
 	}
 
 	on(event, cb) {
-		if (this.callback[event] === undefined) return;
-
-		this.callback[event] = cb;
+		if (this.callbacks[event] === undefined) return;
+		this.callbacks[event] = cb;
 	}
 
 	start(){
@@ -27,25 +26,32 @@ class Timer {
 				this.minute ++;
 			}
 			
-			if (minute >= 60) {
-				minute = 0;
-				hour ++;
+			if (this.minute >= 60) {
+				this.minute = 0;
+				this.hour ++;
 			}
-			this.callback["tick"](this.hour, this.minute, this.second);
+			if(this.callbacks["tick"])
+			this.callbacks["tick"](this.hour, this.minute, this.second);
 		}, 1000);
 	}
 
 	pause(){
+		if(this.interval === null) return;
 		clearInterval(this.interval);
 		this.interval = null;
 	}
 
-	format(num) {
-		return  (num < 10 ? '0' : '') + num;
+	stop() {
+		this.pause();
+		this.reset();
+		if(this.callbacks["tick"]) {
+			this.callbacks["tick"](this.hour, this.minute, this.second);
+		}
 	}
 
+
+
 	reset() {
-		this.pause();
 		this.second = 0;
 		this.minute = 0;
 		this.hour = 0;
@@ -54,39 +60,45 @@ class Timer {
 
 }
 
-var timer = new Timer();
-
-/* ------------------------- btns event ---------------------------- */
-	
-$('#start_btn').on('click', function(){
-	timer.start();
-})
-
-
-$('#pause_btn').on('click', function(){
-	timer.pause();
-})
-
-
-$('#stop_btn').on('click', function(){
-	//clearInterval(timer.interval); // .off는 button을 종료시키는거고 interval은 별개이기때문에 종료되지 않음 clearInterval이라는게 있음.
-	timer.pause();
-	timer.reset();
-	displayTime(timer.second, timer.minute, timer.hour);
-})
 
 
 /* ------------------------- display ---------------------------- */
 
 
-function displayTime(second, minute, hour){
-	$('#second').text(timer.format(second));
-	$('#minute').text(timer.format(minute));
-	$('#hour').text(timer.format(hour));
-	
+function format(num) {
+	return  (num < 10 ? '0' : '') + num;
 }
 
-	
+function displayTime(hour, minute, second){
+	$('#hour').text(format(hour));
+	$('#minute').text(format(minute));
+	$('#second').text(format(second));
+}
+
+const timer = new Timer();
+timer.on("tick", displayTime);
+
+
+/* ------------------------- btns event ---------------------------- */
+
+$('#start_btn').on('click', timer.start);
+$('#pause_btn').on('click', timer.pause);
+$('#stop_btn').on('click', timer.stop);
+
+//clearInterval(timer.interval); // .off는 button을 종료시키는거고 interval은 별개이기때문에 종료되지 않음 clearInterval이라는게 있음.
+
+
+
+
+
+
+
+
+
+
+
+
+
 /*	
 setTimeout(function (){
 	
