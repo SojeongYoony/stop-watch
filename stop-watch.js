@@ -49,8 +49,6 @@ class Timer {
 		}
 	}
 
-
-
 	reset() {
 		this.second = 0;
 		this.minute = 0;
