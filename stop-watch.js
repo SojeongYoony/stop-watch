@@ -100,15 +100,6 @@ $('#stop_btn').on('click', timer.stop.bind(timer));
 
 
 
-
-
-
-
-
-
-
-
-
 /*	
 setTimeout(function (){
 	
