@@ -7,7 +7,7 @@ class Timer {
 		this.hour = 0;
 		this.interval = null;
 		this.callbacks = {
-			tick : null,
+			tick : null
 		};
 	}
 
