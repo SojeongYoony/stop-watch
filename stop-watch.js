@@ -81,12 +81,15 @@ timer.on("tick", displayTime);
 
 $('#start_btn').on('click', function(){
 	timer.start();
+	$('#start_btn').prop("disabled", true);
 });
 $('#pause_btn').on('click', function(){
 	timer.pause();
+	$('#start_btn').prop("disabled", false);
 });
 $('#stop_btn').on('click', function(){
 	timer.stop();
+	$('#start_btn').prop("disabled", false);
 });
 
 
@@ -109,13 +112,5 @@ setTimeout(function (){
 */	
 	
 	
-	
-	
-	
-$(document).ready(function(){
-	
-}) // ready function
 
-// function stopTimer(){
-// }
 
