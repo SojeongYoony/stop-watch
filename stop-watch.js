@@ -1,4 +1,4 @@
-var _setTime = 5000;
+// var _setTime = 5000;
 
 class Timer {
 	constructor() {
@@ -81,16 +81,24 @@ timer.on("tick", displayTime);
 
 $('#start_btn').on('click', function(){
 	timer.start();
-	$('#start_btn').prop("disabled", true);
+	$(this).prop("disabled", true);
+	$('#pause_btn').prop("disabled", false);
 });
+
 $('#pause_btn').on('click', function(){
 	timer.pause();
 	$('#start_btn').prop("disabled", false);
+	$(this).prop("disabled", true);
 });
+
 $('#stop_btn').on('click', function(){
 	timer.stop();
-	$('#start_btn').prop("disabled", false);
+	$('.btns').prop("disabled", false);
 });
+
+$('#print_btn').on('click', function(){
+	$('<li>').append(format(timer.hour) + ' : ' + format(timer.minute) + ' : ' + format(timer.second)).appendTo('#time_list');
+})
 
 
 /*
