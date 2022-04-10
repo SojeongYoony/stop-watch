@@ -43,6 +43,12 @@ TODO : 시작버튼누르면 시작버튼이 일시정지버튼으로 바뀌게 
   <li>현재 측정 시간 출력</li>
 </ul>
 </details>
+<details>
+<summary> 2022-04-10 </summary>
+<ul>
+  <li>ES5로 다시 선언하기..하는중..</li>
+</ul>
+</details>
 
 
 
