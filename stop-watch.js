@@ -38,7 +38,7 @@ class Timer {
 				this.hour ++;
 			}
 			if(this.callbacks["tick"])
-			this.callbacks["tick"](this.hour, this.minute, this.second);
+			this.callbacks["tick"](this.hour, this.minute, this.second, this.ms);
 		}, 100);
 	}
 
@@ -52,11 +52,12 @@ class Timer {
 		this.pause();
 		this.reset();
 		if(this.callbacks["tick"]) {
-			this.callbacks["tick"](this.hour, this.minute, this.second);
+			this.callbacks["tick"](this.hour, this.minute, this.second, this.ms);
 		}
 	}
 
 	reset() {
+		this.ms = 0;
 		this.second = 0;
 		this.minute = 0;
 		this.hour = 0;
