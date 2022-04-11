@@ -81,19 +81,21 @@ timer.on("tick", displayTime);
 
 $('#start_btn').on('click', function(){
 	timer.start();
-	$(this).prop("disabled", true);
-	$('#pause_btn').prop("disabled", false);
+	$(this).toggleClass('hide');
+	$('#pause_btn').toggleClass('hide');
 });
 
 $('#pause_btn').on('click', function(){
 	timer.pause();
-	$('#start_btn').prop("disabled", false);
-	$(this).prop("disabled", true);
+	$('#start_btn').toggleClass('hide');
+	$(this).toggleClass('hide');
+	
 });
 
 $('#stop_btn').on('click', function(){
 	timer.stop();
 	$('.btns').prop("disabled", false);
+	$('.btns').removeClass('hide');
 });
 
 $('#print_btn').on('click', function(){

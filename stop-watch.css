@@ -18,4 +18,6 @@
     height : 24px;
     cursor: pointer;
 }
-
+.hide {
+    display: none;
+}
