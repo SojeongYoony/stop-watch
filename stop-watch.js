@@ -106,7 +106,7 @@ $('#stop_btn').on('click', function(){
 });
 
 $('#print_btn').on('click', function(){
-	$('<li>').append(format(timer.hour) + ' : ' + format(timer.minute) + ' : ' + format(timer.second)).appendTo('#time_list');
+	$('<li>').append(format(timer.hour) + ' : ' + format(timer.minute) + ' : ' + format(timer.second)+ '.' + format(timer.ms)).appendTo('#time_list');
 })
 
 
