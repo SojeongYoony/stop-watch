@@ -110,6 +110,9 @@ $('#print_btn').on('click', function(){
 	$('<li>').append(format(timer.hour) + ' : ' + format(timer.minute) + ' : ' + format(timer.second)+ '.' + format(timer.ms)).appendTo('#time_list');
 })
 
+$('#reset_list').on('click', function(){
+	$('#time_list').empty();
+})
 
 /*
 $('#start_btn').on('click', timer.start.bind(timer));
