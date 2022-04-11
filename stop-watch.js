@@ -94,8 +94,8 @@ $('#pause_btn').on('click', function(){
 
 $('#stop_btn').on('click', function(){
 	timer.stop();
-	$('.btns').prop("disabled", false);
-	$('.btns').removeClass('hide');
+	$('#start_btn').removeClass('hide');
+	$('#pause_btn').addClass('hide');
 });
 
 $('#print_btn').on('click', function(){
