@@ -2,6 +2,7 @@
 
 class Timer {
 	constructor() {
+		this.ms = 0;
 		this.second = 0;
 		this.minute = 0;
 		this.hour = 0;
@@ -20,7 +21,13 @@ class Timer {
 		if(this.interval != null) return;
 
 		this.interval = setInterval(() => {
-			this.second ++;
+			this.ms ++;
+
+			if(this.ms >= 10) {
+				this.ms = 0;
+				this.second ++;
+			}
+			
 			if (this.second >= 60) {
 				this.second = 0;
 				this.minute ++;
@@ -32,7 +39,7 @@ class Timer {
 			}
 			if(this.callbacks["tick"])
 			this.callbacks["tick"](this.hour, this.minute, this.second);
-		}, 1000);
+		}, 100);
 	}
 
 	pause(){
