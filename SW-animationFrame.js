@@ -11,65 +11,7 @@ window.cancelAnimationFrame
 
 
 class Timer {
-	constructor() {
-		this.ms = 0;
-		this.second = 0;
-		this.minute = 0;
-		this.hour = 0;
-        this.timerId = null;
-		this.callbacks = {
-			tick : null
-		};
-	}
-
-	on(event, cb) {
-		if (this.callbacks[event] === undefined) return;
-		this.callbacks[event] = cb;
-	}
-
-	start(){
-        this.ms ++;
-
-        if(this.ms >= 10) {
-            this.ms = 0;
-            this.second ++;
-        }
-        
-        if (this.second >= 60) {
-            this.second = 0;
-            this.minute ++;
-        }
-        
-        if (this.minute >= 60) {
-            this.minute = 0;
-            this.hour ++;
-        }
-        if(this.callbacks["tick"])
-        this.callbacks["tick"](this.hour, this.minute, this.second, this.ms);
-
-        this.timerId = window.requestAnimationFrame(this.start);
-	}
- 
-
-	pause(){
-        window.cancelAnimationFrame(this.timerId);
-    }
-
-	stop() {
-		this.pause();
-		this.reset();
-		if(this.callbacks["tick"]) {
-			this.callbacks["tick"](this.hour, this.minute, this.second, this.ms);
-		}
-	}
-
-	reset() {
-		this.ms = 0;
-		this.second = 0;
-		this.minute = 0;
-		this.hour = 0;
-		
-	}
+// requestAnimationFrame, cancelAnimationFrame 공부하고 구현할 것.
 
 }
 
