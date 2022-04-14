@@ -16,7 +16,7 @@ class Timer {
 		this.second = 0;
 		this.minute = 0;
 		this.hour = 0;
-        this.myReq = null;
+        this.timerId = null;
 		this.callbacks = {
 			tick : null
 		};
@@ -47,12 +47,12 @@ class Timer {
         if(this.callbacks["tick"])
         this.callbacks["tick"](this.hour, this.minute, this.second, this.ms);
 
-        this.myReq = requestAnimationFrame(this.start);
+        this.timerId = window.requestAnimationFrame(this.start);
 	}
  
 
 	pause(){
-        cancelAnimationFrame(this.myReq);
+        window.cancelAnimationFrame(this.timerId);
     }
 
 	stop() {
