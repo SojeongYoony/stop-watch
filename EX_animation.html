@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+
+	<style>
+
+	.container {
+		position: relative;	
+	}
+
+	#box {
+		position: absolute;
+		width: 50px;
+		height: 50px;
+		background-color: #000000;
+		left: 0;
+	}
+
+	</style>
+
+	<script>
+
+	var start = 0;
+
+	function bindEvent (element, event, fn) {
+		element.addEventListener(event, fn)
+	}
+
+	(function () {
+		window.addEventListener("load", function () {
+			// html value
+			var number = document.querySelector("#number");
+			var box = document.querySelector("#box");
+			
+			var pause = document.querySelector("#pause");
+			var play = document.querySelector("#play");
+			var reset = document.querySelector("#reset");
+			var raf = null;
+		
+			function animate (time) {
+				start++;
+				number.innerHTML = start;
+				box.style.left = start + "px";
+				// console.log('raf', raf);
+				
+				if (start < 300) {
+					raf = requestAnimationFrame(animate)
+				}
+			}
+			
+			bindEvent(pause, "click", function () { cancelAnimationFrame(raf); })
+			bindEvent(play, "click", function () { animate(); })
+			bindEvent(reset, "click", function () { 
+				start = 0; 
+				number.innerHTML = 0;
+				box.style.left = "0px";
+				cancelAnimationFrame(raf); 
+			})
+			
+			animate();
+		})
+	})();
+
+	</script>
+
+
+</head>
+<body>
+	
+	<button id="pause">stop</button>
+	<button id='play'>play</button>
+	<button id='reset'>reset</button>
+	<div id='number' data-limit='300'>0</div>
+	<div class='container'>
+		<div id='box'></div>
+	</div>
+
+	
+</body>
+</html>
