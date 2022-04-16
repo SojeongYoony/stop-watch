@@ -1,5 +1,5 @@
 /*
-window.requestAnimationFrame
+window.requestAnimationFrame(RAF)
 문법     : window.requestAnimationFrame(callback);
 파라미터 : callback
 반환 값  : 고유한 요청 id인 long 정수 값. 
@@ -8,6 +8,11 @@ window.requestAnimationFrame
 
 window.cancelAnimationFrame
 */
+
+
+
+
+
 
 
 class Timer {
