@@ -1,0 +1,183 @@
+function Character(dramaId, name, author, characterDetail) {
+    this.dramaId = dramaId;
+    this.name = name;
+    this.author = author;
+    this.characterDetail = characterDetail;
+}
+
+function CharacterList(){
+    this.list = [];
+    this.addList = funciton(character) {
+        this.list.push(character);
+    }
+}
+
+function insertCharacter(){
+    var characterList = new CharacterList();
+    $('#insertBtn').on('click', function(){
+        var dramaId = $('#drama_id').val(); // 거기서는 선택자로 찾음 $(this).children().children().last().val() 인가그럼
+        var name = $('#name').val();
+        var author = $('#author').val();
+        var characterDetail = $('#characterDetail').val();
+    characterList.addList(new Character(dramaId, name, author, characterDetail));
+    reset(); // 대충 input 초기화하는 함수
+    submitCharacterList(characterList);
+    
+    }) // end insertBtn click 
+
+    $('#btn').on('click', function(){
+        var submitList = characterList.list;
+
+        $.ajax({
+            url : '유알엘',
+            type : 'get',
+            traditional : true,
+            data : submitList,
+            contentType : 'application/json',
+            dataType : 'json',
+            success : function(map){
+                if(map.result != 0) {
+                    '성공'
+                } else {
+                    '실패'
+                }
+            }
+        }) // End ajax
+
+    }) // End btn click
+
+
+
+}
+
+==============================================================================
+
+
+
+ajax에 data를 배열로 보낼때 해당 배열 값(self.updateList)은
+
+[ { seq: "", yn: "" }, {seq:"", yn :""}];
+
+이런식으로 배열로 담겨있다.
+
+$.ajax({
+  url: config.contextPath + "/ext/rest/test",
+  type: "POST",
+  dataType:"JSON",
+  traditional : true, //필수
+  data: {list : JSON.stringify(self.updateList)},
+  success: function(result){
+    alert("저장되었습니다.");
+    self.selectList();
+  },
+  error: function (error){
+  	alert('다시 시도하세요');
+  }
+});
+
+
+
+- controller.java ( 받은 데이터를 json으로 변환하여 사용)
+
+@RequestMapping(method = RequestMethod.POST, produces = "application/json")
+@BindUserInfo
+public int updaterInfo(@RequestParam Map<String, Object> paramMap) throws Exception {
+  String jsonData = paramMap.get("list").toString();
+  JSONParser parser = new JSONParser();
+  Object obj  = parser.parse(jsonData);
+
+  paramMap.put("list", obj);
+
+  return service.updateInfo(paramMap);
+}
+ 
+
+- mybatis 반복문
+
+<update id="updateInfo" parameterType="cMap">
+/*mapper.updateInfo*/
+<foreach item="item" index="index" collection="list">
+  UPDATE MH_SRV_HUMAN_REVOLUTION_POPULAR_SEARCH
+  <trim prefix="SET" suffixOverrides=",">
+  USE_YN = #{item.useYn},
+  UPDATE_ID = #{updateId},
+  UPDATE_DATETTIME = NOW()
+  </trim>
+  WHERE SEARCH_SEQ = #{item.seq}
+</foreach>
+
+</update>
+
+
+
+
+
+
+
+
+
+
+
+==============================================================================
+
+Ajax로 Controller에 파라미터를 넘길때 json 형태로 보낸다.
+아래 예시는 tom이라는 사람의 나이는 21살이라는 데이터를 보낼때의 json 형태이다.
+
+{
+  "name": "tom",
+  "age": "21"
+}
+만약 처리해야 될 사람이 여러명이라면 list형태 전송할 수 있다.
+
+var dataArray = [];
+var data1 = {
+   "name" : "tom",
+   "age"  : "21"
+}
+var data2 = {
+   "name" : "jack"
+   "age"  : "22"
+}
+dataArray.push(data1);
+dataArray.push(data2);
+var paramList = {
+   "paramList" : JSON.stringify(dataArray)
+}
+
+$.ajax({
+         type : "POST",
+         url : "/memberInfo.do",
+         data : paramList,
+         success : function(data) {},
+         error : function(e) {}
+      });
+위와 같이 ajax에서 list형태의 json 데이터를 controller에 전송할 수 있다.
+controller에서는 아래와 같이 데이터를 받는다.
+
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
+@RequestMapping("/memberInfo.do")
+   public String memberList(@RequestParam Map<String, Object> parameters{
+      String json = parameters.get("paramList").toString();
+      ObjectMapper mapper = new ObjectMapper();
+      List<Map<String, Object>> paramList = mapper.readValue(json, new TypeReference<ArrayList<Map<String, Object>>>(){});
+}
+리스트를 DTO로 받아야할 경우는 아래와 같이 사용할 수 있다.
+
+List<dto> paramList = mapper.readValue(json, new TypeReference<ArrayList<dto>>(){});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
